@@ -132,6 +132,7 @@ E:\Projects\Practices\UmbracoTut\UmbracoTut\PRSiteUmbraco\bin\System.Web.Helpers
 E:\Projects\Practices\UmbracoTut\UmbracoTut\PRSiteUmbraco\bin\System.Web.Mvc.xml
 E:\Projects\Practices\UmbracoTut\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.dll
 E:\Projects\Practices\UmbracoTut\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.pdb
+E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\AutoMapper.Net4.dll
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\ApplicationInsights.config
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\roslyn\csc.exe
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -145,7 +146,6 @@ E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\ro
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\roslyn\vbc.exe
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\roslyn\VBCSCompiler.exe
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\roslyn\VBCSCompiler.exe.config
-E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\AutoMapper.Net4.dll
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\PRSiteUmbraco.dll.config
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\PRSiteUmbraco.dll
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\PRSiteUmbraco.pdb

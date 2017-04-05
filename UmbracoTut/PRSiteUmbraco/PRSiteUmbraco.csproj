@@ -473,6 +473,10 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Partials\SiteLayout\_Footer.cshtml" />
     <Content Include="Views\Partials\Home\_Featured.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_Intro.cshtml" />
+    <Content Include="Views\Partials\Home\_Services.cshtml" />
+    <Content Include="Views\Partials\Home\_Client.cshtml" />
+    <Content Include="Views\Partials\Home\_Blog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

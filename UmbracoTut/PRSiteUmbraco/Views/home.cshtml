@@ -2,3 +2,15 @@
 @{
 	Layout = "Layout.cshtml";
 }
+
+@*Render featured section*@
+@{ Html.RenderAction("RenderFeaturedSection", "Home");}
+
+@*Render service section*@
+@{ Html.RenderAction("RenderServicesSection", "Home");}
+
+@*Render blog section*@
+@{ Html.RenderAction("RenderBlogSection", "Home");}
+
+@*Render blog section*@
+@{ Html.RenderAction("RenderClientSection", "Home");}
