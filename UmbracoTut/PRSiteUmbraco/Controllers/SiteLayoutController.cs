@@ -15,5 +15,10 @@ namespace PRSiteUmbraco.Controllers
         {
             return PartialView(PARTIAL_VIEW_FOLDER + "_Footer.cshtml");
         }
+
+        public ActionResult RenderIntro()
+        {
+            return PartialView(PARTIAL_VIEW_FOLDER + "_Intro.cshtml");
+        }
     }
 }

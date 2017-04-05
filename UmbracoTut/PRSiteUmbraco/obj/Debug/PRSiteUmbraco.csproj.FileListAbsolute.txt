@@ -264,6 +264,5 @@ E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\Sy
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\System.Web.Webpages.Razor.xml
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\System.Web.Helpers.xml
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\System.Web.Mvc.xml
-E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.csprojResolveAssemblyReference.cache
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.dll
 E:\Projects\Practices\UmbracoTut\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.pdb

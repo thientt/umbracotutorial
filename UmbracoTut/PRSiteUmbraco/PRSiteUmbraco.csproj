@@ -398,6 +398,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SiteLayoutController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -451,7 +452,7 @@
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Partials\SiteLayout\Header.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_Header.cshtml" />
     <Content Include="fonts\.DS_Store" />
     <Content Include="fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\bootstrap\glyphicons-halflings-regular.ttf" />
@@ -470,7 +471,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Partials\SiteLayout\Footer.cshtml" />
+    <Content Include="Views\Partials\SiteLayout\_Footer.cshtml" />
+    <Content Include="Views\Partials\Home\_Featured.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
