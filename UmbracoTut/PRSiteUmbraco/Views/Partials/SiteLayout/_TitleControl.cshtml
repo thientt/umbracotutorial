@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+        <h2>
+            @(Umbraco.AssignedContentItem.HasProperty("title") && !string.IsNullOrEmpty(Umbraco.AssignedContentItem.GetPropertyValue<string>("title")) ?
+                        Umbraco.AssignedContentItem.GetPropertyValue("title") : Umbraco.AssignedContentItem.Name)
+        </h2>
+        <p>
+            @Html.Raw(Umbraco.AssignedContentItem.Parent.GetPropertyValue("created"))
+            @Html.Raw(Umbraco.AssignedContentItem.Parent.GetPropertyValue("iconHeart"))
+            @Html.Raw(Umbraco.AssignedContentItem.Parent.GetPropertyValue("by"))
+            @Html.Raw(Umbraco.AssignedContentItem.Parent.GetPropertyValue("link"))
+        </p>
+    </div>
+</div>
+

@@ -3,6 +3,9 @@
 	Layout = "Layout.cshtml";
 }
 
+@*Render intro*@
+@{ Html.RenderAction("RenderIntro", "SiteLayout");}
+
 @*Render featured section*@
 @{ Html.RenderAction("RenderFeaturedSection", "Home");}
 
