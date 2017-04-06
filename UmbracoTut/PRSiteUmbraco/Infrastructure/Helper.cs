@@ -27,5 +27,19 @@ namespace PRSiteUmbraco.Infrastructure
 
             return cacheObject;
         }
+
+        public static string RenameHomePage(this string homePage)
+        {
+            if (string.IsNullOrEmpty(homePage))
+                throw new ArgumentException("HomePage value not null or empty");
+
+            if (homePage.Equals("VietNamese", StringComparison.InvariantCultureIgnoreCase))
+                return "Trang chủ";
+
+            if (homePage.Equals("English", StringComparison.InvariantCultureIgnoreCase))
+                return "Home";
+
+            return homePage;
+        }
     }
 }

@@ -400,4 +400,3 @@ E:\Projects\Practices\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\System.Web.He
 E:\Projects\Practices\umbracotutorial\UmbracoTut\PRSiteUmbraco\bin\System.Web.Mvc.xml
 E:\Projects\Practices\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.dll
 E:\Projects\Practices\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.pdb
-E:\Projects\Practices\umbracotutorial\UmbracoTut\PRSiteUmbraco\obj\Debug\PRSiteUmbraco.csprojResolveAssemblyReference.cache

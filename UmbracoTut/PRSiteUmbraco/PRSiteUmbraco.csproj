@@ -404,7 +404,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Contants.cs" />
+    <Compile Include="Infrastructure\CultureAwareControllerActivator.cs" />
+    <Compile Include="Infrastructure\GlobalHelper.cs" />
     <Compile Include="Infrastructure\Helper.cs" />
+    <Compile Include="Infrastructure\InternationalizationAttribute.cs" />
     <Compile Include="Models\NavigationLink.cs" />
     <Compile Include="Models\NavigationListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
