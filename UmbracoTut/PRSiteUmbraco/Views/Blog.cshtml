@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoViewPage<BlogModel>
 @{
 	Layout = "Layout.cshtml";
 }
@@ -6,7 +6,7 @@
 <div id="fh5co-blog-section">
 		<div class="container">
 
-            @{Html.RenderAction("RenderTitleControl", "SiteLayout");}
+            @{Html.RenderPartial("~/Views/Partials/SiteLayout/_TitleControl.cshtml", Model);}
 
 			<div class="row">
 				<div class="col-md-4 text-center">

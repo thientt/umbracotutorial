@@ -1,5 +1,6 @@
 ﻿
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<List<NavigationListItem>>
+
 @using System.Collections.Generic;
 @using PRSiteUmbraco.Models;
 @using PRSiteUmbraco.Infrastructure;
@@ -7,16 +8,25 @@
 <header id="fh5co-header" role="banner">
     <div class="container">
         <div class="header-inner">
-            <h1><i class="sl-icon-energy"></i><a href="index.html">Lesser</a></h1>
+            <h1><i class="sl-icon-energy"></i><a href="/">Lesser</a></h1>
             <nav role="navigation">
                 <ul>
                     @RenderChildItems(Model)
+                    <li>
+                        <a href="/vi">
+                            <img src="/images/vn-flag.png" class="language"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/en">
+                            <img src="/images/us-flag.png" class="language"/>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </div>
 </header>
-
 
 @helper RenderChildItems(List<NavigationListItem> listItems)
 {

@@ -1,11 +1,11 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoViewPage<AboutModel>
 @{
     Layout = "Layout.cshtml";
 }
 <div id="fh5co-about-section">
     <div class="container">
 
-        @{Html.RenderAction("RenderTitleControl", "SiteLayout");}
+        @{Html.RenderPartial("~/Views/Partials/SiteLayout/_TitleControl.cshtml", Model);}
 
         <div class="row">
             <div class="col-md-8">

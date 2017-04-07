@@ -399,7 +399,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
+    <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SiteLayoutController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -409,8 +414,16 @@
     <Compile Include="Infrastructure\GlobalHelper.cs" />
     <Compile Include="Infrastructure\Helper.cs" />
     <Compile Include="Infrastructure\InternationalizationAttribute.cs" />
+    <Compile Include="Infrastructure\UmbracoExtensions.cs" />
+    <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\AboutModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\NavigationLink.cs" />
     <Compile Include="Models\NavigationListItem.cs" />
+    <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\ServicesModel.cs" />
+    <Compile Include="Models\PortfolioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

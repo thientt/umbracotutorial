@@ -1,7 +1,8 @@
 ﻿@using System.Drawing
 @using System.Globalization
 @using umbraco.presentation.umbraco.create
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@inherits  UmbracoViewPage<PRSiteUmbraco.Models.BaseModel>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -66,12 +67,12 @@
 
     <div id="fh5co-page">
         @*Render header*@
-        @{ Html.RenderAction("RenderHeader", "SiteLayout");}
+        @{ Html.RenderPartial("~/Views/Partials/SiteLayout/_Header.cshtml", Model.NavigationLinkItem);}
 
         @RenderBody()
 
         @*Footer*@
-        @{ Html.RenderAction("RenderFooter", "SiteLayout");}
+        @{ Html.RenderPartial("~/Views/Partials/SiteLayout/_Footer.cshtml");}
     </div>
 
     <!-- jQuery -->

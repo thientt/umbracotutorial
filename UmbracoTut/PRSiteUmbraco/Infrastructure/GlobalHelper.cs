@@ -7,10 +7,7 @@ namespace PRSiteUmbraco.Infrastructure
     {
         public static string CurrentCulture
         {
-            get
-            {
-                return Thread.CurrentThread.CurrentUICulture.Name;
-            }
+            get { return Thread.CurrentThread.CurrentUICulture.Name; }
         }
 
         public static string DefaultCulture
@@ -18,7 +15,7 @@ namespace PRSiteUmbraco.Infrastructure
             get
             {
                 var config = WebConfigurationManager.OpenWebConfiguration("/");
-                var section = (GlobalizationSection)config.GetSection("system.web/globalization");
+                var section = (GlobalizationSection) config.GetSection("system.web/globalization");
                 return section.UICulture;
             }
         }

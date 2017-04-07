@@ -1,74 +1,75 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoViewPage<PortfolioModel>
+
 @{
-	Layout = "Layout.cshtml";
+    Layout = "Layout.cshtml";
 }
 
 <div id="fh5co-work-section">
-		<div class="container">
+    <div class="container">
 
-            @{Html.RenderAction("RenderTitleControl", "SiteLayout");}
+        @{Html.RenderPartial("~/Views/Partials/SiteLayout/_TitleControl.cshtml", Model);}
 
-			<div class="row">
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(/images/image_1.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(/images/image_2.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(/images/image_3.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(images/image_4.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(/images/image_5.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 text-center">
-					<div class="work-inner">
-						<a href="#" class="work-grid" style="background-image: url(/images/image_6.jpg);">
-						</a>
-						<div class="desc">
-							<h3><a href="#">Work with love</a></h3>
-							<span>Web Design</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_1.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_2.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_3.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_4.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_5.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="work-inner">
+                    <a href="#" class="work-grid" style="background-image: url(/images/image_6.jpg);">
+                    </a>
+                    <div class="desc">
+                        <h3><a href="#">Work with love</a></h3>
+                        <span>Web Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
