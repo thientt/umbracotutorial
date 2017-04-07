@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "35215dbbe1e7a4a5")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "cc565b927252a365")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 
 // FILE: models.generated.cs
@@ -42,7 +42,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Home</summary>
 	[PublishedContentModel("home")]
-	public partial class Home : PublishedContentModel, IIntroControl, ILicenseControls
+	public partial class Home : PublishedContentModel, IFeaturedItemControls, IIntroControl, ILicenseControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "home";
@@ -63,6 +63,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Home, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Featured Items: Enter the featured item in display
+		///</summary>
+		[ImplementPropertyType("featuredItems")]
+		public Archetype.Models.ArchetypeModel FeaturedItems
+		{
+			get { return FeaturedItemControls.GetFeaturedItems(this); }
 		}
 
 		///<summary>
@@ -558,6 +567,151 @@ namespace Umbraco.Web.PublishedContentModels
 
 		/// <summary>Static getter for Content Grid</summary>
 		public static Newtonsoft.Json.Linq.JToken GetContentGrid(IBasicContentControl that) { return that.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("contentGrid"); }
+	}
+
+	// Mixin content Type 1114 with alias "featuredItemControls"
+	/// <summary>Featured Item Controls</summary>
+	public partial interface IFeaturedItemControls : IPublishedContent
+	{
+		/// <summary>Featured Items</summary>
+		Archetype.Models.ArchetypeModel FeaturedItems { get; }
+	}
+
+	/// <summary>Featured Item Controls</summary>
+	[PublishedContentModel("featuredItemControls")]
+	public partial class FeaturedItemControls : PublishedContentModel, IFeaturedItemControls
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "featuredItemControls";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public FeaturedItemControls(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<FeaturedItemControls, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Featured Items: Enter the featured item in display
+		///</summary>
+		[ImplementPropertyType("featuredItems")]
+		public Archetype.Models.ArchetypeModel FeaturedItems
+		{
+			get { return GetFeaturedItems(this); }
+		}
+
+		/// <summary>Static getter for Featured Items</summary>
+		public static Archetype.Models.ArchetypeModel GetFeaturedItems(IFeaturedItemControls that) { return that.GetPropertyValue<Archetype.Models.ArchetypeModel>("featuredItems"); }
+	}
+
+	/// <summary>Cookies</summary>
+	[PublishedContentModel("cookies")]
+	public partial class Cookies : PublishedContentModel, IBasicContentControl, ITitleControls, ITopNavigationControls
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "cookies";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Cookies(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Cookies, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Content Grid: Enter  the content for the page
+		///</summary>
+		[ImplementPropertyType("contentGrid")]
+		public Newtonsoft.Json.Linq.JToken ContentGrid
+		{
+			get { return BasicContentControl.GetContentGrid(this); }
+		}
+
+		///<summary>
+		/// Title: Enter the title for the page , if this is left  blank  the name of the page  will be used.
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return TitleControls.GetTitle(this); }
+		}
+
+		///<summary>
+		/// Exclude from Top Navigation: Tick this if you don't want this page appers in the top navigation
+		///</summary>
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation
+		{
+			get { return TopNavigationControls.GetExcludeFromTopNavigation(this); }
+		}
+	}
+
+	// Mixin content Type 1122 with alias "topNavigationControls"
+	/// <summary>Top Navigation Controls</summary>
+	public partial interface ITopNavigationControls : IPublishedContent
+	{
+		/// <summary>Exclude from Top Navigation</summary>
+		bool ExcludeFromTopNavigation { get; }
+	}
+
+	/// <summary>Top Navigation Controls</summary>
+	[PublishedContentModel("topNavigationControls")]
+	public partial class TopNavigationControls : PublishedContentModel, ITopNavigationControls
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "topNavigationControls";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public TopNavigationControls(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<TopNavigationControls, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Exclude from Top Navigation: Tick this if you don't want this page appers in the top navigation
+		///</summary>
+		[ImplementPropertyType("excludeFromTopNavigation")]
+		public bool ExcludeFromTopNavigation
+		{
+			get { return GetExcludeFromTopNavigation(this); }
+		}
+
+		/// <summary>Static getter for Exclude from Top Navigation</summary>
+		public static bool GetExcludeFromTopNavigation(ITopNavigationControls that) { return that.GetPropertyValue<bool>("excludeFromTopNavigation"); }
 	}
 
 	/// <summary>Folder</summary>

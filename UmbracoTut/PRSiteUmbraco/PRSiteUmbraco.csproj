@@ -401,6 +401,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CookiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -418,6 +419,7 @@
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\AboutModel.cs" />
+    <Compile Include="Models\CookieModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\NavigationLink.cs" />
     <Compile Include="Models\NavigationListItem.cs" />
@@ -504,6 +506,7 @@
     <Content Include="Views\portfolio.cshtml" />
     <Content Include="Views\services.cshtml" />
     <Content Include="Views\Partials\SiteLayout\_TitleControl.cshtml" />
+    <Content Include="Views\Cookies.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,15 @@
+﻿@inherits UmbracoViewPage<CookieModel>
+@{
+    Layout = "Layout.cshtml";
+}
+
+<div id="fh5co-contact-section">
+    <div class="container">
+
+        @{Html.RenderPartial("~/Views/Partials/SiteLayout/_TitleControl.cshtml", Model);}
+
+        <div class="row">
+            @Html.GetGridHtml(Model.Content, "contentGrid")
+        </div>
+    </div>
+</div>

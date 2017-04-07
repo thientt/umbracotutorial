@@ -35,8 +35,7 @@ namespace PRSiteUmbraco.Models
         /// <returns>A List of NavigationListItems, representing the structure of the site.</returns>
         private List<NavigationListItem> GetNavigationModelFromDatabase(IPublishedContent content)
         {
-            const string HOME_PAGE_DOC_TYPE_ALIAS = "home";
-            var homePage = content.Homepage().DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias == HOME_PAGE_DOC_TYPE_ALIAS);
+            var homePage = content.Homepage();
             var nav = new List<NavigationListItem>
             {
                 new NavigationListItem(new NavigationLink(homePage.Url, homePage.Name))
@@ -54,7 +53,10 @@ namespace PRSiteUmbraco.Models
         private static List<NavigationListItem> GetChildNavigationList(IPublishedContent page)
         {
             List<NavigationListItem> listItems = null;
-            var childPages = page.Children.Where("Visible");
+            var childPages = page.Children.Where("Visible")
+                .Where(x => !x.HasValue(Contants.EXCLUDE_FROM_TOP_NAVIGATION) || x.HasValue(Contants.EXCLUDE_FROM_TOP_NAVIGATION)
+                && !x.GetPropertyValue<bool>(Contants.EXCLUDE_FROM_TOP_NAVIGATION));
+
             if (childPages == null || !childPages.Any()) return null;
             listItems = new List<NavigationListItem>();
             foreach (var childPage in childPages)
