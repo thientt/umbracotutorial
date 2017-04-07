@@ -28320,3 +28320,20 @@ _shutDownStack=   at System.Environment.GetStackTrace(Exception e, Boolean needF
  2017-04-07 18:07:10,981 [P5432/D54/T569] INFO  umbraco.content - Loaded Xml from file.
  2017-04-07 18:13:44,806 [P5432/D54/T577] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.HealthCheck.HealthCheck
  2017-04-07 18:13:44,810 [P5432/D54/T577] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.HealthCheck.HealthCheck, found 0 (took 4ms)
+ 2017-04-07 18:43:20,070 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Terminating
+ 2017-04-07 18:43:20,071 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Waiting for tasks to complete
+ 2017-04-07 18:43:20,074 [P5432/D54/T487] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledPublishing] Tasks completed, terminated
+ 2017-04-07 18:43:20,075 [P5432/D54/T492] INFO  Umbraco.Core.MainDom - Stopping...
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Core.MainDom - Released MainDom.
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Terminating
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Waiting for tasks to complete
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Terminating
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Waiting for tasks to complete
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Terminating
+ 2017-04-07 18:43:20,079 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Waiting for tasks to complete
+ 2017-04-07 18:43:20,079 [P5432/D54/T477] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [Umbraco.Web.Scheduling.IBackgroundTask] Tasks completed, terminated
+ 2017-04-07 18:43:20,079 [P5432/D54/T568] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [LogScrubber] Tasks completed, terminated
+ 2017-04-07 18:43:20,080 [P5432/D54/T480] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [KeepAlive] Tasks completed, terminated
+ 2017-04-07 18:43:20,161 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Terminating
+ 2017-04-07 18:43:20,161 [P5432/D54/T492] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Waiting for tasks to complete
+ 2017-04-07 18:43:20,161 [P5432/D54/T490] INFO  Umbraco.Web.Scheduling.BackgroundTaskRunner - [ScheduledTasks] Tasks completed, terminated
