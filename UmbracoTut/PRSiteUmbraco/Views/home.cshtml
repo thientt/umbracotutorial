@@ -1,23 +1,21 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<PRSiteUmbraco.Models.HomeModel>
-    @{
-        Layout = "Layout.cshtml";
-        const string PARTIAL_VIEW_FOLDER_LAYOUT = "~/Views/Partials/SiteLayout/";
-        const string PARTIAL_VIEW_FOLDER_HOME = "~/Views/Partials/Home/";
-    }
+﻿@inherits  UmbracoViewPage<HomeModel>
+@{
+    Layout = "Layout.cshtml";
+    const string PARTIAL_VIEW_FOLDER_LAYOUT = "~/Views/Partials/SiteLayout/";
+    const string PARTIAL_VIEW_FOLDER_HOME = "~/Views/Partials/Home/";
+}
+@using System.Linq;
 
-    @*Render intro*@
-    @*@{ Html.RenderAction("RenderIntro", "SiteLayout");}*@
-    @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_LAYOUT, "_Intro"));}
+@*Render intro*@
+@Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_LAYOUT, "_Intro"), null, PRSiteUmbraco.Infrastructure.Contants.CACHE_TIME, true)
 
-    @*Render featured section*@
-    @*@{ Html.RenderAction("RenderFeaturedSection", "Home");}*@
-    @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Featured"));}
+@*Render featured section*@
+@{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Featured"),
+                                   Model.FeaturedItem.Value != null ? Model.FeaturedItem.Value.GetEnumerator() : new List<FeaturedItem>().GetEnumerator());}
+@*Render service section*@
+@Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Services"),
+                      null, PRSiteUmbraco.Infrastructure.Contants.CACHE_TIME, true)
 
-    @*Render service section*@
-    @*@{ Html.RenderAction("RenderServicesSection", "Home");}*@
-    @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Services"));}
-    @*Render blog section*@
-
-    @*Render blog section*@
-    @*@{ Html.RenderAction("RenderClientSection", "Home");}*@
-    @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Client"));}
+@*Render blog section*@
+@Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Client"),
+    null, PRSiteUmbraco.Infrastructure.Contants.CACHE_TIME, true)
