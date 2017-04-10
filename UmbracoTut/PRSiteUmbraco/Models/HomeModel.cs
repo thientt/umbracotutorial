@@ -20,29 +20,53 @@ namespace PRSiteUmbraco.Models
         {
         }
 
-        Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate ()
+        private static Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate ()
+         {
+             var homePage = PublishedContent.Homepage();
+             var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.FEATURED_ITEMS);
+
+             var _featuredItems = new List<FeaturedItem>();
+             foreach (var item in featuredItems.Fieldsets)
+             {
+                 var imageId = item.GetValue<int>(Constants.Archetype.ALIAS_IMAGE);
+                 var mediaItem = UmbracoHelper.Media(imageId);
+
+                 int pageId = item.GetValue<int>(Constants.Archetype.ALIAS_PAGE);
+                 var linkToPage = UmbracoHelper.TypedContent(pageId);
+
+                 _featuredItems.Add(new FeaturedItem(item.GetValue<string>(Constants.Archetype.ALIAS_NAME),
+                     item.GetValue<string>(Constants.Archetype.ALIAS_CATEGORY),
+                     mediaItem.Url, linkToPage.Url));
+
+             }
+             return _featuredItems;
+         };
+
+        private static Func<ClientModel> GetClients = delegate ()
         {
             var homePage = PublishedContent.Homepage();
-            var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.FEATURED_ITEMS);
+            var title = homePage.GetPropertyValue<string>(Constants.Client.CLIENT_TITLE);
+            var introduction = homePage.GetPropertyValue<string>(Constants.Client.CLIENT_INTRODUCTION);
 
-            var _featuredItems = new List<FeaturedItem>();
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            foreach (var item in featuredItems.Fieldsets)
+            var testimoniyItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.Client.TESTIMONIES);
+            var testimonies = new List<TestimonyModel>();
+
+            foreach (var item in testimoniyItems.Fieldsets)
             {
-                var imageId = item.GetValue<int>(Constants.Archetype.ALIAS_IMAGE);
-                var mediaItem = umbracoHelper.Media(imageId);
-                string imageUrl = mediaItem.Url;
-
-                int pageId = item.GetValue<int>(Constants.Archetype.ALIAS_PAGE);
-                var linkToPage = umbracoHelper.TypedContent(pageId);
-                string linkUrl = linkToPage.Url;
-
-                _featuredItems.Add(new FeaturedItem(item.GetValue<string>(Constants.Archetype.ALIAS_NAME),
-                    item.GetValue<string>(Constants.Archetype.ALIAS_CATEGORY),
-                    imageUrl, linkUrl));
-
+                testimonies.Add(new TestimonyModel
+                {
+                    Introduction = item.GetValue(Constants.Client.TESTIMONIES_INTRODUCTION),
+                    Author = item.GetValue(Constants.Client.TESTIMONIES_AUTHOR),
+                    IconLink = item.GetValue(Constants.Client.TESTIMONIES_ICONLINK)
+                });
             }
-            return _featuredItems;
+
+            return new ClientModel
+            {
+                TerminalTitle = title,
+                TerminalIntroduction = introduction,
+                Testimonies = testimonies,
+            };
         };
 
         public Lazy<IEnumerable<FeaturedItem>> FeaturedItem
@@ -51,8 +75,20 @@ namespace PRSiteUmbraco.Models
             {
                 return new Lazy<IEnumerable<FeaturedItem>>(() =>
                 {
-                    return Helper.GetObjectFromCache<IEnumerable<FeaturedItem>>(
+                    return Helper.GetObjectFromCache(
                        string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems);
+                });
+            }
+        }
+
+        public Lazy<ClientModel> Terminal
+        {
+            get
+            {
+                return new Lazy<ClientModel>(() =>
+                {
+                    return Helper.GetObjectFromCache(string.Format("{0}_terminal", CurrentCulture.ThreeLetterISOLanguageName),
+                        Constants.CACHE_TIME, GetClients);
                 });
             }
         }

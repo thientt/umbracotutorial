@@ -4,18 +4,17 @@
     const string PARTIAL_VIEW_FOLDER_LAYOUT = "~/Views/Partials/SiteLayout/";
     const string PARTIAL_VIEW_FOLDER_HOME = "~/Views/Partials/Home/";
 }
-@using System.Linq;
 
 @*Render intro*@
 @Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_LAYOUT, "_Intro"), null, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)
 
 @*Render featured section*@
 @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Featured"),
-                                   Model.FeaturedItem.Value != null ? Model.FeaturedItem.Value.GetEnumerator() : new List<FeaturedItem>().GetEnumerator());}
+                                                 Model.FeaturedItem.Value != null ? Model.FeaturedItem.Value.GetEnumerator() : new List<FeaturedItem>().GetEnumerator());}
 @*Render service section*@
 @Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Services"),
                       null, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)
 
 @*Render blog section*@
 @Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Client"),
-    null, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)
+    Model.Terminal.Value, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)

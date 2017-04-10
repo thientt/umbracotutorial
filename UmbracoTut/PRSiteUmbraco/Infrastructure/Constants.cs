@@ -27,5 +27,16 @@
             public const string ALIAS_CATEGORY = "category";
             public const string ALIAS_PAGE = "page";
         }
+
+        public class Client
+        {
+            public const string CLIENT_INTRODUCTION = "terminalIntroduction";
+            public const string CLIENT_TITLE = "terminalTitle";
+
+            public const string TESTIMONIES = "testimonies";
+            public const string TESTIMONIES_AUTHOR = "author";
+            public const string TESTIMONIES_INTRODUCTION = "introduction";
+            public const string TESTIMONIES_ICONLINK = "iconLink";
+        }
     }
 }
