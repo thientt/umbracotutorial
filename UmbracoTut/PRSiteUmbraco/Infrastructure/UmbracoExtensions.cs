@@ -18,7 +18,7 @@ namespace PRSiteUmbraco.Infrastructure
 
         public static IPublishedContent GetPage(this IPublishedContent content, string aliasPage)
         {
-            return content.AncestorOrSelf(1).DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias == aliasPage);
+            return content.AncestorOrSelf(aliasPage);//.DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias == aliasPage);
         }
     }
 }
