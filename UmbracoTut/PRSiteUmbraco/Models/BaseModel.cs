@@ -1,25 +1,30 @@
-﻿using System;
+﻿using PRSiteUmbraco.Infrastructure;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using Umbraco.Core.Models;
-using Umbraco.Web.Models;
-using PRSiteUmbraco.Infrastructure;
 using Umbraco.Web;
+using Umbraco.Web.Models;
 
 namespace PRSiteUmbraco.Models
 {
     public class BaseModel : RenderModel
     {
+        protected static IPublishedContent PublishedContent;
+        protected static UmbracoHelper UmbracoHelper;
+
         public BaseModel(IPublishedContent content, CultureInfo culture)
             : base(content, culture)
         {
+            PublishedContent = content;
+            UmbracoHelper = new UmbracoHelper(UmbracoContext.Current);
         }
 
         public BaseModel(IPublishedContent content)
             : base(content)
         {
+            PublishedContent = content;
+            UmbracoHelper = new UmbracoHelper(UmbracoContext.Current);
             NavigationLinkItem = GetNavigationModelFromDatabase(content);
         }
 
@@ -54,10 +59,10 @@ namespace PRSiteUmbraco.Models
         {
             List<NavigationListItem> listItems = null;
             var childPages = page.Children.Where("Visible")
-                .Where(x => !x.HasValue(Contants.EXCLUDE_FROM_TOP_NAVIGATION) || x.HasValue(Contants.EXCLUDE_FROM_TOP_NAVIGATION)
-                && !x.GetPropertyValue<bool>(Contants.EXCLUDE_FROM_TOP_NAVIGATION));
+                .Where(x => !x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION) || x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION)
+                && !x.GetPropertyValue<bool>(Constants.EXCLUDE_FROM_TOP_NAVIGATION));
 
-            if (childPages == null || !childPages.Any()) return null;
+            if (!childPages.Any()) return null;
             listItems = new List<NavigationListItem>();
             foreach (var childPage in childPages)
             {

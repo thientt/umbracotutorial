@@ -1,0 +1,10 @@
+﻿@inherits UmbracoViewPage<BlogPostModel>
+@{
+    Layout = "Layout.cshtml";
+}
+<div id="fh5co-about-section">
+    <div class="container">
+        @{Html.RenderPartial("~/Views/Partials/SiteLayout/_TitleControl.cshtml", Model);}
+        @Html.GetGridHtml(Model.Content, "contentGrid")
+    </div>
+</div>

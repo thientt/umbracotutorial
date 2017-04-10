@@ -405,6 +405,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\BlogPostController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CookiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -415,12 +416,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Contants.cs" />
+    <Compile Include="Infrastructure\Constants.cs" />
     <Compile Include="Infrastructure\CultureAwareControllerActivator.cs" />
     <Compile Include="Infrastructure\GlobalHelper.cs" />
     <Compile Include="Infrastructure\Helper.cs" />
     <Compile Include="Infrastructure\InternationalizationAttribute.cs" />
     <Compile Include="Infrastructure\UmbracoExtensions.cs" />
+    <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\AboutModel.cs" />
@@ -433,6 +435,7 @@
     <Compile Include="Models\ServicesModel.cs" />
     <Compile Include="Models\PortfolioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BlogPreview.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -513,6 +516,8 @@
     <Content Include="Views\services.cshtml" />
     <Content Include="Views\Partials\SiteLayout\_TitleControl.cshtml" />
     <Content Include="Views\Cookies.cshtml" />
+    <Content Include="Views\Partials\Blog\_BlogList.cshtml" />
+    <Content Include="Views\BlogPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

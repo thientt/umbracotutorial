@@ -20,14 +20,15 @@ namespace PRSiteUmbraco.Infrastructure
             Func<T> objectSettingFunction)
         {
             ObjectCache cache = MemoryCache.Default;
-            var cacheObject = (T) cache[cacheItemName];
-            if (cacheObject == null)
+            var cacheObject = (T)cache[cacheItemName];
+            if (cacheObject != null) return cacheObject;
+            var policy = new CacheItemPolicy
             {
-                var policy = new CacheItemPolicy();
-                policy.AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(cacheTimeInMinutes);
-                cacheObject = objectSettingFunction();
-                cache.Set(cacheItemName, cacheObject, policy);
-            }
+                AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(cacheTimeInMinutes)
+            };
+
+            cacheObject = objectSettingFunction();
+            cache.Set(cacheItemName, cacheObject, policy);
 
             return cacheObject;
         }
@@ -40,10 +41,7 @@ namespace PRSiteUmbraco.Infrastructure
             if (homePage.Equals("VietNamese", StringComparison.InvariantCultureIgnoreCase))
                 return "Trang chủ";
 
-            if (homePage.Equals("English", StringComparison.InvariantCultureIgnoreCase))
-                return "Home";
-
-            return homePage;
+            return homePage.Equals("English", StringComparison.InvariantCultureIgnoreCase) ? "Home" : homePage;
         }
     }
 }
