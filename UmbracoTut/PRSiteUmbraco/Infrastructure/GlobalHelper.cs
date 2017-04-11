@@ -5,10 +5,7 @@ namespace PRSiteUmbraco.Infrastructure
 {
     public class GlobalHelper
     {
-        public static string CurrentCulture
-        {
-            get { return Thread.CurrentThread.CurrentUICulture.Name; }
-        }
+        public static string CurrentCulture => Thread.CurrentThread.CurrentUICulture.Name;
 
         public static string DefaultCulture
         {

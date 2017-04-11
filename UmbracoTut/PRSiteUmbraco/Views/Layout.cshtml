@@ -1,8 +1,5 @@
-﻿@using System.Drawing
-@using System.Globalization
-@using umbraco.presentation.umbraco.create
-
-@inherits  UmbracoViewPage<PRSiteUmbraco.Models.BaseModel>
+﻿
+@inherits  UmbracoViewPage<BaseModel>
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -17,8 +14,11 @@
     <title>Lesser &mdash; Free HTML5 Bootstrap Website Template by FreeHTML5.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+    @*<meta name="description" content="@Model.MetaData.Description" />*@
     <meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+    @*<meta name="keywords" content="@Model.MetaData.Keywords" />*@
     <meta name="author" content="FreeHTML5.co" />
+    @*<meta name="author" content="@Model.MetaData.Author" />*@
     <!--
       //////////////////////////////////////////////////////
 
@@ -33,6 +33,15 @@
       //////////////////////////////////////////////////////
        -->
     <!-- Facebook and Twitter integration -->
+    @*<meta property="og:title" content="@Model.MetaData.OgTitle" />
+    <meta property="og:image" content="@Model.MetaData.OgImage" />
+    <meta property="og:url" content="@Model.MetaData.OgUrl" />
+    <meta property="og:site_name" content="@Model.MetaData.OgSiteName" />
+    <meta property="og:description" content="@Model.MetaData.OgDescription" />
+    <meta name="twitter:title" content="@Model.MetaData.TwitterTitle" />
+    <meta name="twitter:image" content="@Model.MetaData.TwitterImage" />
+    <meta name="twitter:url" content="@Model.MetaData.TwitterUrl" />
+    <meta name="twitter:card" content="@Model.MetaData.TwitterCard" />*@
     <meta property="og:title" content="" />
     <meta property="og:image" content="" />
     <meta property="og:url" content="" />
@@ -62,6 +71,7 @@
     <!--[if lt IE 9]>
     <script src="/scripts/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("Head", false)
 </head>
 <body>
 
@@ -89,5 +99,6 @@
 
     <!-- MAIN JS -->
     <script src="/js/main.js"></script>
+    @RenderSection("ScriptsBottom", false)
 </body>
 </html>

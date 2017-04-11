@@ -22,7 +22,6 @@ namespace PRSiteUmbraco.Infrastructure
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            const string key = "_culture";
             var cultureName = string.Empty;
 
             if (!UmbracoContext.Current.IsFrontEndUmbracoRequest) return;
@@ -42,14 +41,13 @@ namespace PRSiteUmbraco.Infrastructure
                 cultureName = ValidLanguages[0];
 
             // Attempt to read the culture cookie from Request
-            var cultureCookie = filterContext.HttpContext.Request.Cookies[key] ?? new HttpCookie(key);
+            var cultureCookie = filterContext.HttpContext.Request.Cookies[Constants.KEY_CULTURE] ?? new HttpCookie(Constants.KEY_CULTURE);
 
             var currentUrl = string.Empty;
             //check in the URL has cluture or not
             if (filterContext.HttpContext.Request.Url?.Segments.Length > 1
                 && !ValidLanguages.Contains(filterContext.HttpContext.Request.Url?.Segments[1].Trim('/').ToLower()))
                 currentUrl = string.Format("/{0}{1}", cultureName, filterContext.HttpContext.Request.Url?.AbsolutePath);
-            //currentUrl = string.Format("/{0}{1}", cultureName, currentUrl);// $"/{cultureName}{currentUrl}";
 
             if (filterContext.HttpContext.Request.Url != null
                 && !string.IsNullOrEmpty(cultureCookie.Value)

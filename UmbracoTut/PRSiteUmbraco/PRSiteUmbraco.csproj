@@ -44,9 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Archetype, Version=1.13.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Archetype.dll</HintPath>
+    <Reference Include="Archetype">
+      <HintPath>..\packages\Archetype.Binaries.1.13.2\lib\net40\Archetype.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
@@ -394,6 +394,13 @@
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\jquery.easing.1.3.js" />
     <Content Include="scripts\jquery.min.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="scripts\jquery.validate-vsdoc.js" />
+    <Content Include="scripts\jquery.validate.js" />
+    <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\jquery.waypoints.min.js" />
     <Content Include="scripts\main.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
@@ -410,6 +417,7 @@
     <Compile Include="Controllers\CookiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\SiteLayoutController.cs" />
@@ -417,10 +425,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Constants.cs" />
-    <Compile Include="Infrastructure\CultureAwareControllerActivator.cs" />
     <Compile Include="Infrastructure\GlobalHelper.cs" />
     <Compile Include="Infrastructure\Helper.cs" />
     <Compile Include="Infrastructure\InternationalizationAttribute.cs" />
+    <Compile Include="Infrastructure\SearchHelper.cs" />
     <Compile Include="Infrastructure\UmbracoExtensions.cs" />
     <Compile Include="Models\BlogPostModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
@@ -432,12 +440,18 @@
     <Compile Include="Models\NavigationLink.cs" />
     <Compile Include="Models\NavigationListItem.cs" />
     <Compile Include="Models\BlogModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\ServicesModel.cs" />
     <Compile Include="Models\PortfolioModel.cs" />
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\TestimonyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPreview.cs" />
+    <Compile Include="ViewModels\MetaData.cs" />
+    <Compile Include="ViewModels\PagingBoundsModel.cs" />
+    <Compile Include="ViewModels\SearchGroup.cs" />
+    <Compile Include="ViewModels\SearchResultsModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -520,6 +534,9 @@
     <Content Include="Views\Cookies.cshtml" />
     <Content Include="Views\Partials\Blog\_BlogList.cshtml" />
     <Content Include="Views\BlogPost.cshtml" />
+    <Content Include="Views\Search.cshtml" />
+    <Content Include="Views\Partials\Search\_SearchForm.cshtml" />
+    <Content Include="Views\Partials\Search\_SearchResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

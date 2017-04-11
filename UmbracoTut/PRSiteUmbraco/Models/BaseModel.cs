@@ -1,4 +1,5 @@
 ﻿using PRSiteUmbraco.Infrastructure;
+using PRSiteUmbraco.ViewModels;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -29,10 +30,19 @@ namespace PRSiteUmbraco.Models
         }
 
         #region Properties
-        public List<NavigationListItem> NavigationLinkItem { get; set; }
+        public List<NavigationListItem> NavigationLinkItem { get; private set; }
+
+        public MetaData MetaData { get; private set; }
         #endregion
 
         #region Private
+
+        private MetaData GetMeta()
+        {
+            var result = new MetaData();
+
+            return result;
+        }
 
         /// <summary>
         ///     Finds the home page and gets the navigation structure based on it and it's children
