@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PRSiteUmbraco.Models
+namespace PRSiteUmbraco.ViewModels
 {
     public class NavigationListItem
     {

@@ -1,5 +1,5 @@
 ﻿
-@inherits Umbraco.Web.Mvc.UmbracoViewPage<List<NavigationListItem>>
+@inherits  UmbracoViewPage<List<PRSiteUmbraco.ViewModels.NavigationListItem>>
 
 @using System.Collections.Generic;
 @using PRSiteUmbraco.Models;
@@ -14,12 +14,12 @@
                     @RenderChildItems(Model)
                     <li>
                         <a href="/vi">
-                            <img src="/images/vn-flag.png" class="language"/>
+                            <img src="/images/vn-flag.png" class="language" />
                         </a>
                     </li>
                     <li>
                         <a href="/en">
-                            <img src="/images/us-flag.png" class="language"/>
+                            <img src="/images/us-flag.png" class="language" />
                         </a>
                     </li>
                 </ul>
@@ -28,7 +28,7 @@
     </div>
 </header>
 
-@helper RenderChildItems(List<NavigationListItem> listItems)
+@helper RenderChildItems(List<PRSiteUmbraco.ViewModels.NavigationListItem> listItems)
 {
 if (listItems != null && listItems.Any())
 {

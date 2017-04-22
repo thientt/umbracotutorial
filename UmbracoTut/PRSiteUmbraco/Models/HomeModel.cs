@@ -1,8 +1,10 @@
-﻿using Archetype.Models;
-using PRSiteUmbraco.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using Archetype.Models;
+using PRSiteUmbraco.Infrastructure;
+using PRSiteUmbraco.ViewModels;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -10,76 +12,40 @@ namespace PRSiteUmbraco.Models
 {
     public class HomeModel : BaseModel
     {
-        private static IPublishedContent PublishedContent;
+        private readonly Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate
+        {
+            var homePage = PublishedContent.Homepage();
+            var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.FEATURED_ITEMS);
+
+            return (from item in featuredItems.Fieldsets.Where(x => !x.Disabled)
+                let imageId = item.GetValue<int>(Constants.Archetype.ALIAS_IMAGE)
+                let mediaItem = UmbracoHelper.Media(imageId)
+                let imageUrl = mediaItem.Url
+                let pageId = item.GetValue<int>(Constants.Archetype.ALIAS_PAGE)
+                let linkToPage = UmbracoHelper.TypedContent(pageId)
+                let linkUrl = linkToPage.Url
+                select new FeaturedItem(item.GetValue<string>(Constants.Archetype.ALIAS_NAME),
+                    item.GetValue<string>(Constants.Archetype.ALIAS_CATEGORY),
+                    (string) imageUrl,
+                    linkUrl));
+        };
 
         public HomeModel(IPublishedContent content, CultureInfo culture)
             : base(content, culture)
         {
-            PublishedContent = content;
         }
 
         public HomeModel(IPublishedContent content)
             : base(content)
         {
-            PublishedContent = content;
-            //var homePage = content.Homepage();
-            //var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Contants.FEATURED_ITEMS);
-
-            //var _featuredItems = new List<FeaturedItem>();
-            //var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            //foreach (var item in featuredItems.Fieldsets)
-            //{
-            //    var imageId = item.GetValue<int>(Contants.Archetype.ALIAS_IMAGE);
-            //    var mediaItem = umbracoHelper.Media(imageId);
-            //    string imageUrl = mediaItem.Url;
-
-            //    int pageId = item.GetValue<int>(Contants.Archetype.ALIAS_PAGE);
-            //    var linkToPage = umbracoHelper.TypedContent(pageId);
-            //    string linkUrl = linkToPage.Url;
-
-            //    _featuredItems.Add(new FeaturedItem(item.GetValue<string>(Contants.Archetype.ALIAS_NAME),
-            //        item.GetValue<string>(Contants.Archetype.ALIAS_CATEGORY),
-            //        imageUrl, linkUrl));
-
-            //    this._featuredItems = _featuredItems;
-            //}
         }
 
-        Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate ()
-        {
-            var homePage = PublishedContent.Homepage();
-            var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Contants.FEATURED_ITEMS);
-
-            var _featuredItems = new List<FeaturedItem>();
-            var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            foreach (var item in featuredItems.Fieldsets)
-            {
-                var imageId = item.GetValue<int>(Contants.Archetype.ALIAS_IMAGE);
-                var mediaItem = umbracoHelper.Media(imageId);
-                string imageUrl = mediaItem.Url;
-
-                int pageId = item.GetValue<int>(Contants.Archetype.ALIAS_PAGE);
-                var linkToPage = umbracoHelper.TypedContent(pageId);
-                string linkUrl = linkToPage.Url;
-
-                _featuredItems.Add(new FeaturedItem(item.GetValue<string>(Contants.Archetype.ALIAS_NAME),
-                    item.GetValue<string>(Contants.Archetype.ALIAS_CATEGORY),
-                    imageUrl, linkUrl));
-
-            }
-            return _featuredItems;
-        };
-
-        //private IEnumerable<FeaturedItem> _featuredItems;
         public Lazy<IEnumerable<FeaturedItem>> FeaturedItem
         {
             get
             {
-                return new Lazy<IEnumerable<FeaturedItem>>(() =>
-                {
-                    return Helper.GetObjectFromCache<IEnumerable<FeaturedItem>>(
-                       string.Format("{0}_featureditems", CurrentCulture.Name), Contants.CACHE_TIME, GetFeaturedItems);
-                });
+                return new Lazy<IEnumerable<FeaturedItem>>(() => Helper.GetObjectFromCache(
+                    string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems));
             }
         }
     }

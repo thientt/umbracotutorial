@@ -1,4 +1,4 @@
-﻿namespace PRSiteUmbraco.Models
+﻿namespace PRSiteUmbraco.ViewModels
 {
     public class FeaturedItem
     {

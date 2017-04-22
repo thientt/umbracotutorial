@@ -3,11 +3,11 @@ using System.Web.Mvc;
 
 namespace PRSiteUmbraco.Controllers
 {
-    public class HomeController : BaseController
+    public class BlogPostController : BaseController
     {
-        public ActionResult Home()
+        public ActionResult BlogPost()
         {
-            var model = new HomeModel(CurrentPage);
+            var model = new BlogPostModel(CurrentPage);
             return CurrentTemplate(model);
         }
     }
