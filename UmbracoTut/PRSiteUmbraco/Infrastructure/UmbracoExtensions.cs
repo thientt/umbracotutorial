@@ -8,17 +8,17 @@ namespace PRSiteUmbraco.Infrastructure
     {
         public static IPublishedContent Homepage(this IPublishedContent content)
         {
-            return content.GetPage(Constants.Page.HOME_PAGE_DOC_TYPE_ALIAS);
+            return content.GetPage(Constants.Page.ALIAS_HOME);
         }
 
-        public static IPublishedContent BlogPage(this IPublishedContent content)
+        public static IPublishedContent Blogpage(this IPublishedContent content)
         {
-            return content.GetPage(Constants.Page.BLOG_PAGE_DOC_TYPE_ALIAS);
+            return content.GetPage(Constants.Page.ALIAS_BLOG);
         }
 
-        public static IPublishedContent GetPage(this IPublishedContent content, string nameAliasPage)
+        public static IPublishedContent GetPage(this IPublishedContent content, string aliasPage)
         {
-            return content.AncestorOrSelf(1).DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias == nameAliasPage);
+            return content.AncestorOrSelf(1).DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias == aliasPage);
         }
     }
 }

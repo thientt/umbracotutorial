@@ -1,5 +1,4 @@
 ﻿using PRSiteUmbraco.Infrastructure;
-using PRSiteUmbraco.ViewModels;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +11,6 @@ namespace PRSiteUmbraco.Models
     public class BaseModel : RenderModel
     {
         protected static IPublishedContent PublishedContent;
-
         protected static UmbracoHelper UmbracoHelper;
 
         public BaseModel(IPublishedContent content, CultureInfo culture)
@@ -64,7 +62,7 @@ namespace PRSiteUmbraco.Models
                 .Where(x => !x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION) || x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION)
                 && !x.GetPropertyValue<bool>(Constants.EXCLUDE_FROM_TOP_NAVIGATION));
 
-            if (childPages == null || !childPages.Any()) return null;
+            if (!childPages.Any()) return null;
             listItems = new List<NavigationListItem>();
             foreach (var childPage in childPages)
             {

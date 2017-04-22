@@ -1,17 +1,35 @@
 ﻿using System;
-using System.Globalization;
-using Umbraco.Core.Models;
-using PRSiteUmbraco.ViewModels;
 using System.Collections.Generic;
+using System.Globalization;
 using PRSiteUmbraco.Infrastructure;
-using System.Linq;
-using Umbraco.Core;
+using PRSiteUmbraco.ViewModels;
+using Umbraco.Core.Models;
 using Umbraco.Web;
 
 namespace PRSiteUmbraco.Models
 {
     public class BlogModel : BaseModel
     {
+        private readonly Func<IEnumerable<BlogPreview>> _getBlogItems = () =>
+        {
+            var blogPage = PublishedContent.Blogpage();
+
+            var blogItems = new List<BlogPreview>();
+            var childPages = blogPage.Children.Where("Visible");
+
+            foreach (var page in childPages)
+            {
+                var imageId = page.GetPropertyValue<int>(Constants.Article.IMAGE);
+                var mediaItem = UmbracoHelper.Media(imageId);
+                string imageUrl = mediaItem.Url;
+
+                blogItems.Add(new BlogPreview(
+                    page.Name, page.GetPropertyValue<string>(Constants.Article.INTRODUCTION),
+                    imageUrl, page.Url));
+            }
+            return blogItems;
+        };
+
         public BlogModel(IPublishedContent content, CultureInfo culture)
             : base(content, culture)
         {
@@ -21,31 +39,14 @@ namespace PRSiteUmbraco.Models
         {
         }
 
-        Func<IEnumerable<BlogPreviewViewModel>> GetBlogPreviewItems = () =>
-        {
-            List<BlogPreviewViewModel> items = new List<BlogPreviewViewModel>();
-            IPublishedContent blogPage = PublishedContent.BlogPage();
-            foreach (IPublishedContent blog in blogPage.Children)
-            {
-                int imageId = blog.GetPropertyValue<int>(Infrastructure.Constants.IMAGE_ALIAS);
-                var mediaItem = UmbracoHelper.Media(imageId);
-                string imageUrl = mediaItem.Url;
-                string linkUrl = blog.Url;
-
-                items.Add(new BlogPreviewViewModel(blog.Name,
-                    blog.GetPropertyValue<string>(Infrastructure.Constants.INTRODUCTION_ALIAS),
-                    imageUrl, linkUrl
-                    ));
-            }
-
-            return items;
-        };
-
-        public Lazy<IEnumerable<BlogPreviewViewModel>> BlogPreviewItems
+        public Lazy<IEnumerable<BlogPreview>> BlogItems
         {
             get
             {
-                return new Lazy<IEnumerable<BlogPreviewViewModel>>(() => GetBlogPreviewItems());
+                return new Lazy<IEnumerable<BlogPreview>>(() =>
+                    Helper.GetObjectFromCache(
+                        string.Format("{0}_blogitems", CurrentCulture.TwoLetterISOLanguageName), Constants.CACHE_TIME, _getBlogItems)
+                    );
             }
         }
     }

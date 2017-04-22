@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Archetype.Models;
+using PRSiteUmbraco.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using Archetype.Models;
-using PRSiteUmbraco.Infrastructure;
-using PRSiteUmbraco.ViewModels;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -12,24 +10,6 @@ namespace PRSiteUmbraco.Models
 {
     public class HomeModel : BaseModel
     {
-        private readonly Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate
-        {
-            var homePage = PublishedContent.Homepage();
-            var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.FEATURED_ITEMS);
-
-            return (from item in featuredItems.Fieldsets.Where(x => !x.Disabled)
-                let imageId = item.GetValue<int>(Constants.Archetype.ALIAS_IMAGE)
-                let mediaItem = UmbracoHelper.Media(imageId)
-                let imageUrl = mediaItem.Url
-                let pageId = item.GetValue<int>(Constants.Archetype.ALIAS_PAGE)
-                let linkToPage = UmbracoHelper.TypedContent(pageId)
-                let linkUrl = linkToPage.Url
-                select new FeaturedItem(item.GetValue<string>(Constants.Archetype.ALIAS_NAME),
-                    item.GetValue<string>(Constants.Archetype.ALIAS_CATEGORY),
-                    (string) imageUrl,
-                    linkUrl));
-        };
-
         public HomeModel(IPublishedContent content, CultureInfo culture)
             : base(content, culture)
         {
@@ -40,12 +20,76 @@ namespace PRSiteUmbraco.Models
         {
         }
 
+        private static Func<IEnumerable<FeaturedItem>> GetFeaturedItems = delegate ()
+         {
+             var homePage = PublishedContent.Homepage();
+             var featuredItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.FEATURED_ITEMS);
+
+             var _featuredItems = new List<FeaturedItem>();
+             foreach (var item in featuredItems.Fieldsets)
+             {
+                 var imageId = item.GetValue<int>(Constants.Archetype.ALIAS_IMAGE);
+                 var mediaItem = UmbracoHelper.Media(imageId);
+
+                 int pageId = item.GetValue<int>(Constants.Archetype.ALIAS_PAGE);
+                 var linkToPage = UmbracoHelper.TypedContent(pageId);
+
+                 _featuredItems.Add(new FeaturedItem(item.GetValue<string>(Constants.Archetype.ALIAS_NAME),
+                     item.GetValue<string>(Constants.Archetype.ALIAS_CATEGORY),
+                     mediaItem.Url, linkToPage.Url));
+
+             }
+             return _featuredItems;
+         };
+
+        private static Func<ClientModel> GetClients = delegate ()
+        {
+            var homePage = PublishedContent.Homepage();
+            var title = homePage.GetPropertyValue<string>(Constants.Client.CLIENT_TITLE);
+            var introduction = homePage.GetPropertyValue<string>(Constants.Client.CLIENT_INTRODUCTION);
+
+            var testimoniyItems = homePage.GetPropertyValue<ArchetypeModel>(Constants.Client.TESTIMONIES);
+            var testimonies = new List<TestimonyModel>();
+
+            foreach (var item in testimoniyItems.Fieldsets)
+            {
+                testimonies.Add(new TestimonyModel
+                {
+                    Introduction = item.GetValue(Constants.Client.TESTIMONIES_INTRODUCTION),
+                    Author = item.GetValue(Constants.Client.TESTIMONIES_AUTHOR),
+                    IconLink = item.GetValue(Constants.Client.TESTIMONIES_ICONLINK)
+                });
+            }
+
+            return new ClientModel
+            {
+                TerminalTitle = title,
+                TerminalIntroduction = introduction,
+                Testimonies = testimonies,
+            };
+        };
+
         public Lazy<IEnumerable<FeaturedItem>> FeaturedItem
         {
             get
             {
-                return new Lazy<IEnumerable<FeaturedItem>>(() => Helper.GetObjectFromCache(
-                    string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems));
+                return new Lazy<IEnumerable<FeaturedItem>>(() =>
+                {
+                    return Helper.GetObjectFromCache(
+                       string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems);
+                });
+            }
+        }
+
+        public Lazy<ClientModel> Terminal
+        {
+            get
+            {
+                return new Lazy<ClientModel>(() =>
+                {
+                    return Helper.GetObjectFromCache(string.Format("{0}_terminal", CurrentCulture.ThreeLetterISOLanguageName),
+                        Constants.CACHE_TIME, GetClients);
+                });
             }
         }
     }
