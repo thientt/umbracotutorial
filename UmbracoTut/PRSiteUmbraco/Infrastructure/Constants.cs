@@ -2,26 +2,53 @@
 {
     public class Constants
     {
-        public static int CACHE_TIME = 5 * 60; //5 miliseconds
+        public const int CACHE_TIME = 5; //5 miliseconds
 
-        public static string EXCLUDE_FROM_TOP_NAVIGATION = "excludeFromTopNavigation";
+        public const string EXCLUDE_FROM_TOP_NAVIGATION = "excludeFromTopNavigation";
 
-        public static string FEATURED_ITEMS = "featuredItems";
-        public static string IMAGE_ALIAS = "image";
-        public static string INTRODUCTION_ALIAS = "introduction";
+        public const string FEATURED_ITEMS = "featuredItems";
 
-        public class Archetype
+        public const string KEY_CULTURE = "_language_culture";
+        public const string DEFAULT_CULTURE = "en";
+
+        public class Article
         {
-            public static string ALIAS_IMAGE = "image";
-            public static string ALIAS_NAME = "name";
-            public static string ALIAS_CATEGORY = "category";
-            public static string ALIAS_PAGE = "page";
+            public const string INTRODUCTION = "articleIntro";
+            public const string IMAGE = "articleimage";
         }
 
         public class Page
         {
-            public const string HOME_PAGE_DOC_TYPE_ALIAS = "home";
-            public const string BLOG_PAGE_DOC_TYPE_ALIAS = "blog";
+            public const string ALIAS_HOME = "home";
+            public const string ALIAS_BLOG = "blog";
+            public const string ALIAS_SEARCH = "search";
+        }
+
+        public class Archetype
+        {
+            public const string ALIAS_IMAGE = "image";
+            public const string ALIAS_NAME = "name";
+            public const string ALIAS_CATEGORY = "category";
+            public const string ALIAS_PAGE = "page";
+        }
+
+        public class Client
+        {
+            public const string CLIENT_INTRODUCTION = "terminalIntroduction";
+            public const string CLIENT_TITLE = "terminalTitle";
+
+            public const string TESTIMONIES = "testimonies";
+            public const string TESTIMONIES_AUTHOR = "author";
+            public const string TESTIMONIES_INTRODUCTION = "introduction";
+            public const string TESTIMONIES_ICONLINK = "iconLink";
+        }
+
+        public class Search
+        {
+            public const string DOCTYPE_ALIASES = "docTypeAliases";
+            public const string FIELD_PROPERTYALIASED = "fieldPropertyAliases";
+            public const string PAGE_SIZE = "pageSize";
+            public const string PAGING_GROUP_SIZE = "pageGroupSize";
         }
     }
 }
