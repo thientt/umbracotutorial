@@ -1,25 +1,24 @@
-﻿
-@inherits  UmbracoViewPage<List<PRSiteUmbraco.ViewModels.NavigationListItem>>
+﻿@inherits UmbracoViewPage<List<PRSiteUmbraco.ViewModels.NavigationListItem>>
 
-@using System.Collections.Generic;
-@using PRSiteUmbraco.Models;
 @using PRSiteUmbraco.Infrastructure;
 
 <header id="fh5co-header" role="banner">
     <div class="container">
         <div class="header-inner">
-            <h1><i class="sl-icon-energy"></i><a href="/">Lesser</a></h1>
+            <h1>
+                <i class="sl-icon-energy"></i><a href="/">Lesser</a>
+            </h1>
             <nav role="navigation">
                 <ul>
                     @RenderChildItems(Model)
                     <li>
                         <a href="/vi">
-                            <img src="/images/vn-flag.png" class="language" />
+                            <img src="/images/vn-flag.png" class="language" alt=""/>
                         </a>
                     </li>
                     <li>
                         <a href="/en">
-                            <img src="/images/us-flag.png" class="language" />
+                            <img src="/images/us-flag.png" class="language" alt=""/>
                         </a>
                     </li>
                 </ul>
@@ -30,27 +29,32 @@
 
 @helper RenderChildItems(List<PRSiteUmbraco.ViewModels.NavigationListItem> listItems)
 {
-if (listItems != null && listItems.Any())
-{
+    if (listItems == null || !listItems.Any())
+    {
+        return;
+    }
+
     foreach (var item in listItems)
     {
-            <li>
-                @if (!String.IsNullOrEmpty(item.Text))
-                {
-                    @item.Text
-                }
-                else if (item.Link != null)
+        <li>
+            @if (!String.IsNullOrEmpty(item.Text))
+            {
+                @item.Text
+            }
+            else
+            {
+                if (item.Link != null)
                 {
                     <a href="@item.Link.Url" class="@(Umbraco.AssignedContentItem.Url == item.Link.Url ? "active" : null) @(item.HasChildren ? "fh5co-sub-ddown" : null)" target="@item.Link.Target">@item.Link.Text.RenameHomePage()</a>
                 }
+            }
 
-                @if (item.HasChildren)
-                {
-                    <ul class="sub-menu">
-                        @RenderChildItems(item.Items)
-                    </ul>
-                }
-            </li>
+            @if (item.HasChildren)
+            {
+                <ul class="sub-menu">
+                    @RenderChildItems(item.Items)
+                </ul>
+            }
+        </li>
     }
-}
 }

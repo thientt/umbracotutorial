@@ -1,4 +1,6 @@
-﻿@inherits  UmbracoViewPage<HomeModel>
+﻿@using System.Web.Mvc.Html
+@using PRSiteUmbraco.Entities
+@inherits  UmbracoViewPage<HomeModel>
 @{
     Layout = "Layout.cshtml";
     const string PARTIAL_VIEW_FOLDER_LAYOUT = "~/Views/Partials/SiteLayout/";
@@ -10,11 +12,11 @@
 
 @*Render featured section*@
 @{ Html.RenderPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Featured"),
-                                                 Model.FeaturedItem.Value != null ? Model.FeaturedItem.Value.GetEnumerator() : new List<FeaturedItem>().GetEnumerator());}
+                                                                             Model.FeaturedItem != null ? Model.FeaturedItem.GetEnumerator() : new List<FeaturedItem>().GetEnumerator());}
 @*Render service section*@
 @Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Services"),
                       null, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)
 
 @*Render blog section*@
 @Html.CachedPartial(string.Format("{0}{1}.cshtml", PARTIAL_VIEW_FOLDER_HOME, "_Client"),
-    Model.Terminal.Value, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)
+    Model.Terminal, PRSiteUmbraco.Infrastructure.Constants.CACHE_TIME, true)

@@ -1,8 +1,8 @@
-﻿using PRSiteUmbraco.Infrastructure;
-using PRSiteUmbraco.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using PRSiteUmbraco.Infrastructure;
+using PRSiteUmbraco.ViewModels;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.Models;
@@ -30,14 +30,16 @@ namespace PRSiteUmbraco.Models
         }
 
         #region Properties
+
         public List<NavigationListItem> NavigationLinkItem { get; private set; }
 
-        public MetaData MetaData { get; private set; }
+        public MetaData MetaData => GetMeta();
+
         #endregion
 
         #region Private
 
-        private MetaData GetMeta()
+        private static MetaData GetMeta()
         {
             var result = new MetaData();
 
@@ -48,7 +50,7 @@ namespace PRSiteUmbraco.Models
         ///     Finds the home page and gets the navigation structure based on it and it's children
         /// </summary>
         /// <returns>A List of NavigationListItems, representing the structure of the site.</returns>
-        private List<NavigationListItem> GetNavigationModelFromDatabase(IPublishedContent content)
+        private static List<NavigationListItem> GetNavigationModelFromDatabase(IPublishedContent content)
         {
             var homePage = content.Homepage();
             var nav = new List<NavigationListItem>
@@ -67,13 +69,15 @@ namespace PRSiteUmbraco.Models
         /// <returns>A List of NavigationListItems, representing the structure of the pages below a page.</returns>
         private static List<NavigationListItem> GetChildNavigationList(IPublishedContent page)
         {
-            List<NavigationListItem> listItems = null;
             var childPages = page.Children.Where("Visible")
-                .Where(x => !x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION) || x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION)
-                && !x.GetPropertyValue<bool>(Constants.EXCLUDE_FROM_TOP_NAVIGATION));
+                .Where(
+                    x =>
+                        !x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION) ||
+                        x.HasValue(Constants.EXCLUDE_FROM_TOP_NAVIGATION)
+                        && !x.GetPropertyValue<bool>(Constants.EXCLUDE_FROM_TOP_NAVIGATION));
 
             if (!childPages.Any()) return null;
-            listItems = new List<NavigationListItem>();
+            var listItems = new List<NavigationListItem>();
             foreach (var childPage in childPages)
             {
                 var listItem = new NavigationListItem(new NavigationLink(childPage.Url, childPage.Name))
@@ -86,6 +90,7 @@ namespace PRSiteUmbraco.Models
 
             return listItems;
         }
+
         #endregion
     }
 }

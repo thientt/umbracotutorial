@@ -1,8 +1,8 @@
-﻿namespace PRSiteUmbraco.ViewModels
+﻿namespace PRSiteUmbraco.Entities
 {
-    public class BlogPreviewViewModel
+    public class BlogPreview
     {
-        public BlogPreviewViewModel(string name, string introduction, string imageUrl, string linkUrl)
+        public BlogPreview(string name, string introduction, string imageUrl, string linkUrl)
         {
             Name = name;
             Introduction = introduction;
