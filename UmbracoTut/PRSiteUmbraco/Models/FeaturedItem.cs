@@ -12,10 +12,10 @@
 
         public FeaturedItem(string name, string category, string imageUrl, string linkUrl)
         {
-            this.Name = name;
-            this.Category = category;
-            this.ImageUrl = imageUrl;
-            this.LinkUrl = linkUrl;
+            Name = name;
+            Category = category;
+            ImageUrl = imageUrl;
+            LinkUrl = linkUrl;
         }
     }
 }
