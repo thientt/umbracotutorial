@@ -435,10 +435,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\CookieModel.cs" />
-    <Compile Include="Models\FeaturedItem.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\NavigationLink.cs" />
-    <Compile Include="Models\NavigationListItem.cs" />
     <Compile Include="Models\BlogModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\ServicesModel.cs" />
@@ -447,7 +444,11 @@
     <Compile Include="Models\TestimonyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BlogPreview.cs" />
+    <Compile Include="ViewModels\BlogPreviewViewModel.cs" />
+    <Compile Include="ViewModels\FeaturedItem.cs" />
     <Compile Include="ViewModels\MetaData.cs" />
+    <Compile Include="ViewModels\NavigationLink.cs" />
+    <Compile Include="ViewModels\NavigationListItem.cs" />
     <Compile Include="ViewModels\PagingBoundsModel.cs" />
     <Compile Include="ViewModels\SearchGroup.cs" />
     <Compile Include="ViewModels\SearchResultsModel.cs" />

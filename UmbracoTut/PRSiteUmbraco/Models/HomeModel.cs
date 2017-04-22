@@ -1,5 +1,6 @@
 ﻿using Archetype.Models;
 using PRSiteUmbraco.Infrastructure;
+using PRSiteUmbraco.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
