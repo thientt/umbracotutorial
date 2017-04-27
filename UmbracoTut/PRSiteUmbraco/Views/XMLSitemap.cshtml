@@ -1,0 +1,32 @@
+@inherits UmbracoTemplatePage
+@{
+    Layout = null;
+}
+@{
+    library.ChangeContentType("text/xml");
+    int level = 6;
+    var home = CurrentPage.AncestorOrSelf(1);
+    var pages = home.Descendants();//.Where("hideInSitemap == false");
+}
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>@Request.Url.Scheme://@Request.Url.Host</loc>
+        <lastmod>@home.UpdateDate.ToString("yyyy-MM-ddTHH:mm:00")+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    @foreach (var page in pages)
+    {
+        if (page.Level <= @level)
+        {
+            <url>
+                <loc>@Request.Url.Scheme://@Request.Url.Host@page.Url</loc>
+                <lastmod>@page.UpdateDate.ToString("yyyy-MM-ddTHH:mm:00")+00:00</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.5</priority>
+            </url>
+        }
+    }
+</urlset>

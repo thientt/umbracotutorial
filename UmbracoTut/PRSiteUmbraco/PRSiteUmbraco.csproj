@@ -538,6 +538,7 @@
     <Content Include="Views\Search.cshtml" />
     <Content Include="Views\Partials\Search\_SearchForm.cshtml" />
     <Content Include="Views\Partials\Search\_SearchResults.cshtml" />
+    <Content Include="Views\XMLSitemap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
