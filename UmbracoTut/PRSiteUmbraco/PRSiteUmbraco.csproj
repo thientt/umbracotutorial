@@ -448,7 +448,7 @@
     <Compile Include="Entities\FeaturedItem.cs" />
     <Compile Include="ViewModels\MetaData.cs" />
     <Compile Include="ViewModels\NavigationLink.cs" />
-    <Compile Include="ViewModels\NavigationListItem.cs" />
+    <Compile Include="Entities\NavigationListItem.cs" />
     <Compile Include="ViewModels\PagingBoundsModel.cs" />
     <Compile Include="ViewModels\SearchGroup.cs" />
     <Compile Include="ViewModels\SearchResultsModel.cs" />

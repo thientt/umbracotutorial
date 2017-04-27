@@ -6,6 +6,7 @@ using PRSiteUmbraco.ViewModels;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.Models;
+using PRSiteUmbraco.Entities;
 
 namespace PRSiteUmbraco.Models
 {
@@ -26,7 +27,6 @@ namespace PRSiteUmbraco.Models
         {
             PublishedContent = content;
             UmbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            MetaData = GetMeta();
             NavigationLinkItem = GetNavigationModelFromDatabase(content);
         }
 

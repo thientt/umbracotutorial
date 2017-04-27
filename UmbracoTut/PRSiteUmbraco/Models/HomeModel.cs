@@ -1,4 +1,5 @@
 ﻿using Archetype.Models;
+using PRSiteUmbraco.Entities;
 using PRSiteUmbraco.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -69,27 +70,21 @@ namespace PRSiteUmbraco.Models
             };
         };
 
-        public Lazy<IEnumerable<FeaturedItem>> FeaturedItem
+        public IEnumerable<FeaturedItem> FeaturedItem
         {
             get
             {
-                return new Lazy<IEnumerable<FeaturedItem>>(() =>
-                {
-                    return Helper.GetObjectFromCache(
-                       string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems);
-                });
+                return Helper.GetObjectFromCache(
+                          string.Format("{0}_featureditems", CurrentCulture.Name), Constants.CACHE_TIME, GetFeaturedItems);
             }
         }
 
-        public Lazy<ClientModel> Terminal
+        public ClientModel Terminal
         {
             get
             {
-                return new Lazy<ClientModel>(() =>
-                {
-                    return Helper.GetObjectFromCache(string.Format("{0}_terminal", CurrentCulture.ThreeLetterISOLanguageName),
-                        Constants.CACHE_TIME, GetClients);
-                });
+                return Helper.GetObjectFromCache(string.Format("{0}_terminal", CurrentCulture.ThreeLetterISOLanguageName),
+                           Constants.CACHE_TIME, GetClients);
             }
         }
     }

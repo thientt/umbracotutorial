@@ -1,4 +1,4 @@
-﻿@inherits UmbracoViewPage<List<PRSiteUmbraco.ViewModels.NavigationListItem>>
+@inherits UmbracoViewPage<List<PRSiteUmbraco.Entities.NavigationListItem>>
 
 @using PRSiteUmbraco.Infrastructure;
 
@@ -27,7 +27,7 @@
     </div>
 </header>
 
-@helper RenderChildItems(List<PRSiteUmbraco.ViewModels.NavigationListItem> listItems)
+@helper RenderChildItems(List<PRSiteUmbraco.Entities.NavigationListItem> listItems)
 {
     if (listItems == null || !listItems.Any())
     {
