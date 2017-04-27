@@ -50,5 +50,24 @@
             public const string PAGE_SIZE = "pageSize";
             public const string PAGING_GROUP_SIZE = "pageGroupSize";
         }
+
+        public class Meta
+        {
+            public const string TITLE = "metaTitle";
+            public const string DESCRIPTION = "metaDescription";
+            public const string KEYWORD = "metaKeyword";
+            public const string AUTHOR = "metaAuthor";
+
+            public const string FACEBOOK_TITLE = "facebookTitle";
+            public const string FACEBOOK_IMAGE = "facebookImage";
+            public const string FACEBOOK_URL = "facebookUrl";
+            public const string FACEBOOK_SITENAME = "facebookSiteName";
+            public const string FACEBOOK_DESCRIPTION = "facebookDescription";
+
+            public const string TWITTER_TITLE = "twitterTitle";
+            public const string TWITTER_IMAGE = "twitterImage";
+            public const string TWITTER_URL = "twitterUrl";
+            public const string TWITTER_CARD = "twitterCard";
+        }
     }
 }

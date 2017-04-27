@@ -26,6 +26,7 @@ namespace PRSiteUmbraco.Models
         {
             PublishedContent = content;
             UmbracoHelper = new UmbracoHelper(UmbracoContext.Current);
+            MetaData = GetMeta();
             NavigationLinkItem = GetNavigationModelFromDatabase(content);
         }
 
@@ -39,7 +40,25 @@ namespace PRSiteUmbraco.Models
 
         private MetaData GetMeta()
         {
-            var result = new MetaData();
+            var homePage = PublishedContent.Homepage();
+
+            var result = new MetaData
+            {
+                Title = homePage.GetPropertyValue<string>(Constants.Meta.TITLE),
+                Description = homePage.GetPropertyValue<string>(Constants.Meta.DESCRIPTION),
+                Keywords = homePage.GetPropertyValue<string>(Constants.Meta.KEYWORD),
+                Author = homePage.GetPropertyValue<string>(Constants.Meta.AUTHOR),
+                FacebookTitle = homePage.GetPropertyValue<string>(Constants.Meta.FACEBOOK_TITLE),
+                FacebookImage = homePage.GetPropertyValue<string>(Constants.Meta.FACEBOOK_IMAGE),
+                FacebookUrl = homePage.GetPropertyValue<string>(Constants.Meta.FACEBOOK_URL),
+                FacebookSiteName = homePage.GetPropertyValue<string>(Constants.Meta.FACEBOOK_SITENAME),
+                FacebookDescription = homePage.GetPropertyValue<string>(Constants.Meta.FACEBOOK_DESCRIPTION),
+
+                TwitterTitle = homePage.GetPropertyValue<string>(Constants.Meta.TWITTER_TITLE),
+                TwitterImage = homePage.GetPropertyValue<string>(Constants.Meta.TWITTER_IMAGE),
+                TwitterUrl = homePage.GetPropertyValue<string>(Constants.Meta.TWITTER_URL),
+                TwitterCard = homePage.GetPropertyValue<string>(Constants.Meta.TWITTER_CARD),
+            };
 
             return result;
         }

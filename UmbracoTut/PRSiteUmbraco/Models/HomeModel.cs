@@ -57,7 +57,7 @@ namespace PRSiteUmbraco.Models
                 {
                     Introduction = item.GetValue(Constants.Client.TESTIMONIES_INTRODUCTION),
                     Author = item.GetValue(Constants.Client.TESTIMONIES_AUTHOR),
-                    IconLink=item.GetValue(Constants.Client.TESTIMONIES_ICONLINK)
+                    IconLink = item.GetValue(Constants.Client.TESTIMONIES_ICONLINK)
                 });
             }
 

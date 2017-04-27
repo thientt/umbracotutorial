@@ -2,16 +2,17 @@
 {
     public class MetaData
     {
+        public string Title { get; set; }
         public string Description { get; set; }
         public string Keywords { get; set; }
         public string Author { get; set; }
 
         //Facebook
-        public string OgTitle { get; set; }
-        public string OgImage { get; set; }
-        public string OgUrl { get; set; }
-        public string OgSiteName { get; set; }
-        public string OgDescription { get; set; }
+        public string FacebookTitle { get; set; }
+        public string FacebookImage { get; set; }
+        public string FacebookUrl { get; set; }
+        public string FacebookSiteName { get; set; }
+        public string FacebookDescription { get; set; }
 
         //Twitter
         public string TwitterTitle { get; set; }
